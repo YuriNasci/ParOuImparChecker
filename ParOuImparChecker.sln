@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33712.159
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParOuImparChecker", "ParOuImparChecker\ParOuImparChecker.csproj", "{F792C9FD-538A-46AA-9859-073CD628BA45}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ParOuImparChecker", "ParOuImparChecker\ParOuImparChecker.csproj", "{F792C9FD-538A-46AA-9859-073CD628BA45}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParOuImparCheckerTests", "ParOuImparCheckerTests\ParOuImparCheckerTests.csproj", "{09C3B12A-5E71-42A6-916B-7CC4FF4A9005}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{F792C9FD-538A-46AA-9859-073CD628BA45}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F792C9FD-538A-46AA-9859-073CD628BA45}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F792C9FD-538A-46AA-9859-073CD628BA45}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09C3B12A-5E71-42A6-916B-7CC4FF4A9005}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09C3B12A-5E71-42A6-916B-7CC4FF4A9005}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09C3B12A-5E71-42A6-916B-7CC4FF4A9005}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09C3B12A-5E71-42A6-916B-7CC4FF4A9005}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
