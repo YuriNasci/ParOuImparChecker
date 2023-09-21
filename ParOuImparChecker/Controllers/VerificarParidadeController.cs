@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ParOuImparChecker.Models.Dto;
 
 namespace ParOuImparChecker.Controllers
 {
@@ -7,7 +8,7 @@ namespace ParOuImparChecker.Controllers
     public class VerificarParidadeController : ControllerBase
     {
         [HttpGet]
-        public ActionResult<bool> VerificarParidade(int numeroEntrada, string parOuImpar)
+        public ActionResult<VerificarParidadeResultDto> VerificarParidade(int numeroEntrada, string parOuImpar)
         {
             if (numeroEntrada < 0 || numeroEntrada > 5 || (parOuImpar != "par" && parOuImpar != "impar"))
             {
@@ -21,7 +22,7 @@ namespace ParOuImparChecker.Controllers
             bool resultado = (soma % 2 == 0 && parOuImpar == "par") || (soma % 2 != 0 && parOuImpar == "impar");
             string mensagem = resultado ? "Você venceu!" : "Você perdeu!";
 
-            return Ok(new
+            return Ok(new VerificarParidadeResultDto()
             {
                 Mensagem = mensagem,
                 Vitoria = resultado,
