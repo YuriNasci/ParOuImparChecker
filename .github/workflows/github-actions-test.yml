@@ -1,6 +1,10 @@
-name: dotnet package
+name: Teste Dotnet Package
 
-on: [push]
+on: 
+  push:
+    branches:
+      - 'feature/*'
+      - master
 
 jobs:
   build:
