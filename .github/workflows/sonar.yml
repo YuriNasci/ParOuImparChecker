@@ -2,9 +2,7 @@ name: SonarCloud
 on:
   push:
     branches:
-      - master
-  pull_request:
-    types: [opened, synchronize, reopened]
+      - feature/*
 jobs:
   build:
     name: Build and analyze
@@ -43,10 +41,6 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         shell: powershell
         run: |
-          dotnet sonarscanner begin /k:"YuriNasci_ParOuImparChecker"
-            /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
-            /d:sonar.cs.vscoveragexml.reportsPaths=coverage.xml
-          dotnet build --no-incremental
-          dotnet-coverage collect "dotnet test" -f xml -o "coverage.xml"
-          dotnet sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
-        
+          .\.sonar\scanner\dotnet-sonarscanner begin /k:"YuriNasci_ParOuImparChecker" /o:"yurinasci" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
+          dotnet test /p:CollectCoverage=true
+          .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
