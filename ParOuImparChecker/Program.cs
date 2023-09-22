@@ -1,3 +1,6 @@
+using HealthChecks.UI.Client;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -12,7 +15,7 @@ builder.Services.AddHealthChecks();
 builder.Services
     .AddHealthChecksUI(setupSettings: setup =>
     {
-        setup.AddHealthCheckEndpoint("Swagger Api", "/api/verificar-paridade?numeroEntrada=4&parOuImpar=par");
+        setup.AddHealthCheckEndpoint("Par ou Impar Checker API", "/healthz");
     });
 
 builder.Services.AddHealthChecksUI().AddInMemoryStorage();
@@ -29,9 +32,18 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app
-    .UseRouting()
-    .UseEndpoints(config => config.MapHealthChecksUI());
+app.UseRouting()
+   .UseEndpoints(config =>
+   {
+       config.MapHealthChecks("/healthz", new HealthCheckOptions
+       {
+           Predicate = _ => true,
+           ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+       });
+
+       config.MapHealthChecksUI();
+   });
+
 
 app.Run();
 
