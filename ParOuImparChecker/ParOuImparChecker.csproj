@@ -7,9 +7,14 @@
     <UserSecretsId>7aa9caca-0643-426b-bcd5-aefa5f6644ee</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <EnableSdkContainerSupport>true</EnableSdkContainerSupport>
+    <ApplicationInsightsResourceId>/subscriptions/2fc04098-9138-404a-9153-ad366f50eea1/resourceGroups/cloud-shell-storage-eastus/providers/microsoft.insights/components/ParOuImparCheckerApplicationInsights</ApplicationInsightsResourceId>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AspNetCore.HealthChecks.UI" Version="7.0.2" />
+    <PackageReference Include="AspNetCore.HealthChecks.UI.Client" Version="7.1.0" />
+    <PackageReference Include="AspNetCore.HealthChecks.UI.InMemory.Storage" Version="7.0.0" />
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.15.0" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.5" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.18.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
