@@ -1,0 +1,45 @@
+name: Trigger auto deployment for parouimparchecker-app-2023091718
+
+# When this action will be executed
+on:
+  # Automatically trigger it when detected changes in repo
+  push:
+    branches: 
+      [ master ]
+    paths:
+    - '//**'
+    - '.github/workflows/parouimparchecker-app-2023091718-AutoDeployTrigger-da7181b5-6b57-4c9c-b53c-1e5f0db02e1b.yml'
+
+  # Allow manual trigger 
+  workflow_dispatch:      
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    permissions: 
+      id-token: write #This is required for requesting the OIDC JWT Token
+
+    steps:
+      - name: Checkout to the branch
+        uses: actions/checkout@v2
+
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          client-id: ${{ secrets.PAROUIMPARCHECKERAPP2023091718_AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.PAROUIMPARCHECKERAPP2023091718_AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.PAROUIMPARCHECKERAPP2023091718_AZURE_SUBSCRIPTION_ID }}
+
+      - name: Build and push container image to registry
+        uses: azure/container-apps-deploy-action@v1
+        with:
+          appSourcePath: ${{ github.workspace }} 
+          registryUrl: parouimparchecker20230917185715.azurecr.io
+          registryUsername: ${{ secrets.PAROUIMPARCHECKERAPP2023091718_REGISTRY_USERNAME }}
+          registryPassword: ${{ secrets.PAROUIMPARCHECKERAPP2023091718_REGISTRY_PASSWORD }}
+          containerAppName: parouimparchecker-app-2023091718
+          resourceGroup: LuckFarmResourceGroup
+          imageToBuild: parouimparchecker20230917185715.azurecr.io/parouimparchecker-app-2023091718:${{ github.sha }}
+          dockerfilePath: Dockerfile
+
+
