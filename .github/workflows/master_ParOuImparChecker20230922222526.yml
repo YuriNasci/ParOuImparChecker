@@ -31,7 +31,7 @@ jobs:
       with:
         push: true
         tags: parouimparcheckercontainerregistry.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_bfa504721b3e4e629c9d5c2281c25f93 }}/parouimparchecker:${{ github.sha }}
-        file: ./Dockerfile
+        file: ./ParOuImparChecker/Dockerfile
 
   deploy:
     runs-on: ubuntu-latest
