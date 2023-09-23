@@ -1,14 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Microsoft.AspNetCore.Mvc;
 using ParOuImparChecker.Controllers;
 using ParOuImparChecker.Models.Dto;
 
-namespace ParOuImparChecker.Test.Controllers
+namespace ParOuImparChecker.TestxUnit
 {
-    [TestClass()]
-    public class VerificarParidadeControllerTest
+    public class UnitTest1
     {
-        [TestMethod()]
+        [Fact]
         public void VerificarParidade_ParametrosValidos_DeveRetornarOkObject()
         {
             // Arrange
@@ -18,10 +16,11 @@ namespace ParOuImparChecker.Test.Controllers
             var resultado = controller.VerificarParidade(2, "par");
             var verificarParidadeResultDto = resultado as ActionResult<VerificarParidadeResultDto>;
 
-            Assert.IsInstanceOfType(verificarParidadeResultDto.Result, typeof(OkObjectResult));
+            //Assert.IsInstanceOfType(verificarParidadeResultDto.Result, typeof(OkObjectResult));
+            Assert.IsType<OkObjectResult>(verificarParidadeResultDto.Result);
         }
 
-        [TestMethod()]
+        [Fact]
         public void VerificarParidade_ParametrosInvalidos_DeveRetornarBadRequest()
         {
             // Arrange
@@ -31,7 +30,7 @@ namespace ParOuImparChecker.Test.Controllers
             var resultado = controller.VerificarParidade(8, "par");
             var verificarParidadeResultDto = resultado as ActionResult<VerificarParidadeResultDto>;
 
-            Assert.IsInstanceOfType(verificarParidadeResultDto.Result, typeof(BadRequestObjectResult));
+            Assert.IsType<BadRequestObjectResult>(verificarParidadeResultDto.Result);
         }
     }
 }
