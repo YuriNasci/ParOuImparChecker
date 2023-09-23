@@ -22,15 +22,15 @@ jobs:
     - name: Log in to registry
       uses: docker/login-action@v2
       with:
-        registry: https://parouimparchecker20230922222829.azurecr.io/
-        username: ${{ secrets.AzureAppService_ContainerUsername_54da178318f6420a99d425b9b9e692a8 }}
-        password: ${{ secrets.AzureAppService_ContainerPassword_b4cdb4b57f664bee89defdae3c7f8e34 }}
+        registry: https://parouimparcheckercontainer.azurecr.io/
+        username: ${{ secrets.AzureAppService_ContainerUsername_e6990367e3b4467f859a098721b4e3bf }}
+        password: ${{ secrets.AzureAppService_ContainerPassword_1d825bb646ea4dd0bd5c5f84f55ed654 }}
 
     - name: Build and push container image to registry
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: parouimparchecker20230922222829.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_54da178318f6420a99d425b9b9e692a8 }}/parouimparchecker:${{ github.sha }}
+        tags: parouimparcheckercontainer.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_e6990367e3b4467f859a098721b4e3bf }}/parouimparcheckerimage:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -47,5 +47,5 @@ jobs:
       with:
         app-name: 'ParOuImparChecker20230922222526'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_3452399ee0514f57952ae13e4aa6712b }}
-        images: 'parouimparchecker20230922222829.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_54da178318f6420a99d425b9b9e692a8 }}/parouimparchecker:${{ github.sha }}'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_d4cbf75927b443148c78e0437292f8fc }}
+        images: 'parouimparcheckercontainer.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_e6990367e3b4467f859a098721b4e3bf }}/parouimparcheckerimage:${{ github.sha }}'
